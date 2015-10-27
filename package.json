@@ -1,0 +1,29 @@
+{
+  "name": "cycle-audio-graph",
+  "version": "0.1.0",
+  "description": "Audio graph driver for Cycle.js based on virtual-audio-graph",
+  "keywords": [
+    "api",
+    "audio",
+    "audiograph",
+    "cycle",
+    "cycle-audio-graph",
+    "declarative",
+    "driver",
+    "functional",
+    "graph",
+    "virtual-audio-graph",
+    "virtual",
+    "web"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "build": "node_modules/.bin/babel index.es6.js --out-file index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ben Hall",
+  "license": "MIT",
+  "dependencies": {
+    "virtual-audio-graph": "^0.15.4"
+  }
+}
