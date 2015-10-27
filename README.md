@@ -39,7 +39,7 @@ makeAudioGraphDriver({
 
 ```javascript
 import {run} from '@cycle/core';
-import makeAudioGraphDriver from './index.js';
+import makeAudioGraphDriver from 'cycle-audio-graph';
 
 const audioContext = new AudioContext();
 
