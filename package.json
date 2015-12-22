@@ -18,12 +18,18 @@
   ],
   "main": "index.js",
   "scripts": {
-    "build": "node_modules/.bin/babel index.es6.js --out-file index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel index.es6.js --out-file index.js",
+    "test": "node test"
   },
   "author": "Ben Hall",
   "license": "MIT",
   "dependencies": {
     "virtual-audio-graph": "^0.16.4"
+  },
+  "devDependencies": {
+    "babel": "^5.8.34",
+    "rx": "^4.0.7",
+    "tape": "^4.2.2",
+    "web-audio-test-api": "^0.5.2"
   }
 }
