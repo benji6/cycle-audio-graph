@@ -1,6 +1,7 @@
 # cycle-audio-graph
 
 [![npm version](https://badge.fury.io/js/cycle-audio-graph.svg)](https://badge.fury.io/js/cycle-audio-graph)
+[![Build Status](https://travis-ci.org/benji6/cycle-audio-graph.svg)](https://travis-ci.org/benji6/cycle-audio-graph)
 
 Audio graph driver for Cycle.js based on [virtual-audio-graph](https://github.com/benji6/virtual-audio-graph)
 
