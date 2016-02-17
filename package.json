@@ -24,7 +24,7 @@
   "author": "Ben Hall",
   "license": "MIT",
   "dependencies": {
-    "virtual-audio-graph": "^0.16.4"
+    "virtual-audio-graph": "^0.16.6"
   },
   "devDependencies": {
     "babel": "^5.8.34",
