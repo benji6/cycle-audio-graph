@@ -20,9 +20,9 @@ npm i -S cycle-audio-graph
 The default export of `cycle-audio-graph` is `makeAudioGraphDriver` which takes an optional configuration object with two optional key-value pairs:
 
 ```javascript
-import makeAudioGraphDriver from 'cycle-audio-graph';
+import makeAudioGraphDriver from 'cycle-audio-graph'
 
-const audioContext = new AudioContext();
+const audioContext = new AudioContext()
 
 // if no configuration object is provided the defaults
 // detailed below will be used
@@ -34,46 +34,50 @@ makeAudioGraphDriver({
   // If not provided then cycle-audio-graph will use
   // the destination of its audioContext instance
   output: audioContext.destination,
-});
+})
 
 ```
 
 ### Very Basic Example
 
 ```javascript
-import {run} from '@cycle/core';
-import makeAudioGraphDriver from 'cycle-audio-graph';
+import {run} from '@cycle/core'
+import makeAudioGraphDriver from 'cycle-audio-graph'
 
-const audioContext = new AudioContext();
+const audioContext = new AudioContext()
 
 const main = responses => {
-  // ...
-  virtualNodeParams$ = example$.map(_ => {
+  // ... example$ could be some sort of user input
+  graph$ = example$.map(_ => {
     // ...
-    const {currentTime} = audioContext;
+    const {currentTime} = audioContext
     return {
       0: ['gain', 'output', {gain: 0.2}],
-      1: ['oscillator', 0, {type: 'square',
-                            frequency: 440,
-                            startTime: currentTime + 1,
-                            stopTime: currentTime + 2}],
-    };
-  });
+      1: ['oscillator', 0, {
+        type: 'square',
+        frequency: 440,
+        startTime: currentTime + 1,
+        stopTime: currentTime + 2,
+      }],
+    }
+  })
   return {
-    audioGraph: virtualNodeParams$,
+    audioGraph: graph$,
     // ... etc.
-  };
-};
+  }
+}
 
 const drivers = {
-  audioGraph: makeAudioGraphDriver({audioContext,
-                                    output: audioContext.destination}),
+  audioGraph: makeAudioGraphDriver({
+    audioContext,
+    output: audioContext.destination,
+  }),
   // ... etc.
-};
+}
 
-run(main, drivers);
+run(main, drivers)
 ```
 
 ### virtual-audio-graph
 
-For more info on the `virtualNodeParams` objects check out the documentation for [virtual-audio-graph](https://github.com/benji6/virtual-audio-graph)
+For more info on the `graph` objects in the `graph$` check out the documentation for [virtual-audio-graph](https://github.com/benji6/virtual-audio-graph)
