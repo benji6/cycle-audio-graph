@@ -3,9 +3,9 @@
 [![npm version](https://badge.fury.io/js/cycle-audio-graph.svg)](https://badge.fury.io/js/cycle-audio-graph)
 [![Build Status](https://travis-ci.org/benji6/cycle-audio-graph.svg)](https://travis-ci.org/benji6/cycle-audio-graph)
 
-Audio graph driver for [Cycle.js](https://github.com/cyclejs) based on [virtual-audio-graph](https://github.com/benji6/virtual-audio-graph)
+Audio graph driver for [Cycle.js](https://github.com/cyclejs) based on [virtual-audio-graph](https://github.com/benji6/virtual-audio-graph).
 
-Check out [Awesome Cycle.js](https://github.com/vic/awesome-cyclejs) for more Cycle.js resources
+Check out [Awesome Cycle.js](https://github.com/vic/awesome-cyclejs) for more Cycle.js resources.
 
 ## Installation
 
@@ -80,4 +80,4 @@ run(main, drivers)
 
 ### virtual-audio-graph
 
-For more info on the `graph` objects in the `graph$` check out the documentation for [virtual-audio-graph](https://github.com/benji6/virtual-audio-graph)
+For more info on the `graph` objects in the `graph$` check out the documentation for [virtual-audio-graph](https://github.com/benji6/virtual-audio-graph).

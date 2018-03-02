@@ -1,11 +1,12 @@
 require('web-audio-test-api')
+const {of} = require('xstream').default
+const test = require('tape')
+const makeAudioGraphDriver = require('./')
+
 WebAudioTestAPI.setState({
   'AudioContext#createStereoPanner': 'enabled',
   'AnalyserNode#getFloatTimeDomainData': 'enabled'
 })
-const Observable = require('rx').Observable
-const test = require('tape')
-const makeAudioGraphDriver = require('./')
 
 const audioContext = new AudioContext()
 
@@ -15,7 +16,7 @@ const audioGraphDriver = makeAudioGraphDriver({
 })
 
 test('it works', t => {
-  audioGraphDriver(Observable.of({
+  audioGraphDriver(of({
     0: ['gain', 'output', {gain: 0.2}],
     1: ['oscillator', 0, {type: 'square', frequency: 440}]
   }))
@@ -38,7 +39,7 @@ test('it works', t => {
     ]
   })
 
-  audioGraphDriver(Observable.of({
+  audioGraphDriver(of({
     0: ['gain', 'output', {gain: 0.1}],
     1: ['oscillator', 0, {type: 'sine', frequency: 220}]
   }))
@@ -61,13 +62,13 @@ test('it works', t => {
     ]
   })
 
-  audioGraphDriver(Observable.of({}))
+  audioGraphDriver(of({}))
   t.deepEqual(audioContext.toJSON(), {
     name: 'AudioDestinationNode',
     inputs: []
   })
 
-  audioGraphDriver(Observable.of({
+  audioGraphDriver(of({
     0: ['gain', 'output', {gain: 0.2}],
     1: ['oscillator', 0, {type: 'square', frequency: 440}]
   }))
