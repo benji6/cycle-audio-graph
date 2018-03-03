@@ -1,21 +1,53 @@
 require('web-audio-test-api')
-const {of} = require('xstream').default
-const test = require('tape')
-const makeAudioGraphDriver = require('./')
+var of = require('xstream').default.of
+var test = require('tape')
+var makeAudioGraphDriver = require('./')
 
 WebAudioTestAPI.setState({
   'AudioContext#createStereoPanner': 'enabled',
   'AnalyserNode#getFloatTimeDomainData': 'enabled'
 })
 
-const audioContext = new AudioContext()
+test('no destination in config', function (t) {
+  var audioContext = new AudioContext
 
-const audioGraphDriver = makeAudioGraphDriver({
-  audioContext,
-  output: audioContext.destination
+  var audioGraphDriver = makeAudioGraphDriver({
+    audioContext: audioContext,
+  })
+
+  audioGraphDriver(of({
+    0: ['gain', 'output', {gain: 0.2}],
+    1: ['oscillator', 0, {type: 'square', frequency: 440}]
+  }))
+  t.deepEqual(audioContext.toJSON(), {
+    name: 'AudioDestinationNode',
+    inputs: [
+      {
+        gain: {inputs: [], value: 0.2},
+        inputs: [
+          {
+            detune: {value: 0, inputs: []},
+            frequency: {value: 440, inputs: []},
+            inputs: [],
+            name: 'OscillatorNode',
+            type: 'square'
+          }
+        ],
+        name: 'GainNode'
+      }
+    ]
+  })
+  t.end()
 })
 
-test('it works', t => {
+test('a few graphs', function(t) {
+  var audioContext = new AudioContext
+
+  var audioGraphDriver = makeAudioGraphDriver({
+    audioContext: audioContext,
+    output: audioContext.destination
+  })
+
   audioGraphDriver(of({
     0: ['gain', 'output', {gain: 0.2}],
     1: ['oscillator', 0, {type: 'square', frequency: 440}]

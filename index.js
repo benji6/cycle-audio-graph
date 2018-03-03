@@ -1,32 +1,22 @@
-'use strict';
+'use strict'
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
+var createVirtualAudioGraph = require('virtual-audio-graph')
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+module.exports = function (arg) {
+  var config = arg || {}
+  var audioContext = config.audioContext || new AudioContext
+  var output = config.output || audioContext.destination
 
-var _virtualAudioGraph = require('virtual-audio-graph');
-
-var _virtualAudioGraph2 = _interopRequireDefault(_virtualAudioGraph);
-
-exports['default'] = function () {
-  var _ref = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-  var _ref$audioContext = _ref.audioContext;
-  var audioContext = _ref$audioContext === undefined ? new AudioContext() : _ref$audioContext;
-  var _ref$output = _ref.output;
-  var output = _ref$output === undefined ? audioContext.destination : _ref$output;
-
-  var virtualAudioGraph = (0, _virtualAudioGraph2['default'])({ audioContext: audioContext, output: output });
+  var virtualAudioGraph = createVirtualAudioGraph({
+    audioContext: audioContext,
+    output: output
+  })
 
   return function (nodeParams$) {
     return nodeParams$.addListener({
       next: function next(nodeParams) {
-        return virtualAudioGraph.update(nodeParams);
+        return virtualAudioGraph.update(nodeParams)
       }
-    });
-  };
-};
-
-module.exports = exports['default'];
+    })
+  }
+}
