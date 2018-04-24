@@ -22,12 +22,13 @@
   },
   "author": "Ben Hall",
   "license": "MIT",
-  "dependencies": {
-    "virtual-audio-graph": "^0.19.0"
-  },
   "devDependencies": {
     "tape": "^4.5.1",
+    "virtual-audio-graph": "^1.0.0",
     "web-audio-test-api": "^0.5.2",
     "xstream": "^11.2.0"
+  },
+  "peerDependencies": {
+    "virtual-audio-graph": "^1.0.0"
   }
 }

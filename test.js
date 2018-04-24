@@ -1,7 +1,10 @@
 require('web-audio-test-api')
-var of = require('xstream').default.of
-var test = require('tape')
-var makeAudioGraphDriver = require('./')
+
+const {gain, oscillator} = require('virtual-audio-graph')
+
+const of = require('xstream').default.of
+const test = require('tape')
+const makeAudioGraphDriver = require('./')
 
 WebAudioTestAPI.setState({
   'AudioContext#createStereoPanner': 'enabled',
@@ -9,15 +12,15 @@ WebAudioTestAPI.setState({
 })
 
 test('no destination in config', function (t) {
-  var audioContext = new AudioContext
+  const audioContext = new AudioContext
 
-  var audioGraphDriver = makeAudioGraphDriver({
+  const audioGraphDriver = makeAudioGraphDriver({
     audioContext: audioContext,
   })
 
   audioGraphDriver(of({
-    0: ['gain', 'output', {gain: 0.2}],
-    1: ['oscillator', 0, {type: 'square', frequency: 440}]
+    0: gain('output', {gain: 0.2}),
+    1: oscillator(0, {type: 'square', frequency: 440})
   }))
   t.deepEqual(audioContext.toJSON(), {
     name: 'AudioDestinationNode',
@@ -41,16 +44,16 @@ test('no destination in config', function (t) {
 })
 
 test('a few graphs', function(t) {
-  var audioContext = new AudioContext
+  const audioContext = new AudioContext
 
-  var audioGraphDriver = makeAudioGraphDriver({
+  const audioGraphDriver = makeAudioGraphDriver({
     audioContext: audioContext,
     output: audioContext.destination
   })
 
   audioGraphDriver(of({
-    0: ['gain', 'output', {gain: 0.2}],
-    1: ['oscillator', 0, {type: 'square', frequency: 440}]
+    0: gain('output', {gain: 0.2}),
+    1: oscillator(0, {type: 'square', frequency: 440})
   }))
   t.deepEqual(audioContext.toJSON(), {
     name: 'AudioDestinationNode',
@@ -72,8 +75,8 @@ test('a few graphs', function(t) {
   })
 
   audioGraphDriver(of({
-    0: ['gain', 'output', {gain: 0.1}],
-    1: ['oscillator', 0, {type: 'sine', frequency: 220}]
+    0: gain('output', {gain: 0.1}),
+    1: oscillator(0, {type: 'sine', frequency: 220})
   }))
   t.deepEqual(audioContext.toJSON(), {
     name: 'AudioDestinationNode',
@@ -101,8 +104,8 @@ test('a few graphs', function(t) {
   })
 
   audioGraphDriver(of({
-    0: ['gain', 'output', {gain: 0.2}],
-    1: ['oscillator', 0, {type: 'square', frequency: 440}]
+    0: gain('output', {gain: 0.2}),
+    1: oscillator(0, {type: 'square', frequency: 440})
   }))
   t.deepEqual(audioContext.toJSON(), {
     name: 'AudioDestinationNode',

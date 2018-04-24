@@ -1,6 +1,6 @@
 'use strict'
 
-var createVirtualAudioGraph = require('virtual-audio-graph')
+var createVirtualAudioGraph = require('virtual-audio-graph').default
 
 module.exports = function (arg) {
   var config = arg || {}
