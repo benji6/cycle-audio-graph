@@ -1,6 +1,6 @@
 {
   "name": "cycle-audio-graph",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Audio graph driver for Cycle.js based on virtual-audio-graph",
   "keywords": [
     "api",
